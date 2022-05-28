@@ -73,7 +73,7 @@ Below is an interface for the functions inside [academic.js](academics.js). Each
         Returns an academic object that corresponds to the given id.
     </td>
     <td>
-        <code>()</code>
+        <code>(academicId)</code>
     </td>
     <td>
         <code>{academic}</code>
