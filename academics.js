@@ -67,9 +67,10 @@ const dataStore = {
  */
 function getNumAcademics() {
   // TODO: Observe the return object, then replace with your implementation
-  // to work on dataStores with a different number of academics and courses.
+  // to work on dataStores with a different number of academics and courses. 
+  let num = dataStore['academics'].length;
   return {
-    numAcademics: -1,
+    numAcademics: num,
   };
 }
 
@@ -82,7 +83,7 @@ function getNumCourses() {
   // TODO: Observe the return object, then replace with your implementation
   // to work on dataStores with a different number of academics and courses.
   return {
-    numCourses: -1,
+    numCourses: dataStore['courses'].length,
   };
 }
 
@@ -96,11 +97,19 @@ function getNumCourses() {
 function getAcademicDetailsFromId(academicId) {
   // TODO: Observe the return object, then replace with your implementation
   // to work on dataStores with a different number of academics and courses.
+  let student = dataStore.academics;
+  for (i in student) {
+    if (student[i].id === academicId) { 
+      return {
+        academic: {
+          name: `${student[i].name}`,
+          hobby: `${student[i].hobby}`,
+        },
+      };
+    }
+  }
   return {
-    academic: {
-      name: 'Ada',
-      hobby: 'music',
-    },
+    error: 'error', 
   };
 }
 
@@ -114,11 +123,20 @@ function getAcademicDetailsFromId(academicId) {
 function getCourseDetailsFromId(courseId) {
   // TODO: Observe the return object, then replace with your implementation
   // to work on dataStores with a different number of academics and courses.
+  let course = dataStore.courses;
+  for (i in course) {
+    if (course[i].id === courseId) {
+      return {
+        course: {
+          name: `${course[i].name}`,
+          description: `${course[i].description}`,
+        }
+      }
+    }
+
+  }
   return {
-    course: {
-      name: 'COMP1511',
-      description: 'Programming Fundamentals',
-    },
+    error: 'error',
   };
 }
 
@@ -134,6 +152,31 @@ function getCourseDetailsFromId(courseId) {
 function checkAcademicIsMember(academicId, courseId) {
   // TODO: Observe the return object, then replace with your implementation
   // to work on dataStores with a different number of academics and courses.
+ 
+ if (getAcademicDetailsFromId(academicId).error) {
+   return {
+     error: 'error',
+   }
+ }
+  let course = dataStore.courses;
+  let members = null;
+  for (i in course) {
+    if (course[i].id === courseId) {
+      members = course[i].member_ids;
+    }
+  }
+  if (members === null) {
+    return {
+      error: 'error',
+    }
+  }
+  for (i in members) {
+    if (members[i] === academicId) {
+      return {
+        isMember: true,
+      };
+    }
+  }
   return {
     isMember: false,
   };
@@ -151,6 +194,30 @@ function checkAcademicIsMember(academicId, courseId) {
 function checkAcademicIsStaff(academicId, courseId) {
   // TODO: Observe the return object, then replace with your implementation
   // to work on dataStores with a different number of academics and courses.
+  if (getAcademicDetailsFromId(academicId).error) {
+    return {
+      error: 'error',
+    }
+  }
+  let course = dataStore.courses;
+  let staffs = null;
+  for (i in course) {
+    if (course[i].id === courseId) {
+      staffs = course[i].staff_ids;
+    }
+  }
+  if (staffs === null) {
+    return {
+      error: 'error',
+    }
+  }
+  for (i in staffs) {
+    if (staffs[i] === academicId) {
+      return {
+        isStaff: true,
+      };
+    }
+  } 
   return {
     isStaff: false,
   };
@@ -175,9 +242,36 @@ console.log("Expect: { academic: { name: 'Ada', hobby: 'music' } }");
 console.log('Output:', getAcademicDetailsFromId(10));
 console.log();
 
+console.log('3a. getAcademicDetailsFromId(20)');
+console.log("Expect: { academic: { name: 'Ben', hobby: 'gym' } }");
+console.log('Output:', getAcademicDetailsFromId(20));
+console.log();
+
 console.log('4. getAcademicDetailsFromId(999999)');
 console.log("Expect: { error: 'error' }");
 console.log('Output:', getAcademicDetailsFromId(999999));
 console.log();
 
 console.log('// TODO: You can add more debugging console.log here.');
+console.log('5. getCourseDetailFromId(1511)');
+console.log("Expect: { course: { name: 'COMP1511', description: 'Programming Fundamentals' }");
+console.log('Output:', getCourseDetailsFromId(1511));
+console.log();
+
+console.log('6. getCourseDetailFromId(0)');
+console.log("Expect: { error: 'error' }");
+console.log('Output:', getCourseDetailsFromId(0));
+console.log();
+
+console.log('7. checkAcademicIsMember(x,x)');
+console.log('Output:', checkAcademicIsMember(10,1511));
+console.log('Output:', checkAcademicIsMember(999999,1511));
+console.log('Output:', checkAcademicIsMember(10,99999));
+console.log();
+
+console.log('8. checkAcademicIsStaff(x,x)');
+console.log('Output:', checkAcademicIsStaff(10,1511));
+console.log('Output:', checkAcademicIsStaff(999999,1511));
+console.log('Output:', checkAcademicIsStaff(10,99999));
+
+
