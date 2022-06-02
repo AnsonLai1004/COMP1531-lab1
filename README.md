@@ -238,14 +238,14 @@ const data = {
             name: 'COMP1511',
             description: 'Programming Fundamentals',
             staffIds: [10, 20],
-            member_ids: [10, 20, 30, 40, 50],
+            memberIds: [10, 20, 30, 40, 50],
         },
         {
             id: 1531,
             name: 'COMP1531',
             description: 'Programming Fundamentals',
             staffIds: [10],
-            member_ids: [10, 20, 30, 40, 50],
+            memberIds: [10, 20, 30, 40, 50],
         },
         // ...
     ],
