@@ -243,7 +243,7 @@ const data = {
         {
             id: 1531,
             name: 'COMP1531',
-            description: 'Programming Fundamentals',
+            description: 'Software Engineering Fundamentals',
             staffIds: [10],
             memberIds: [10, 20, 30, 40, 50],
         },
