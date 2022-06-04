@@ -1,6 +1,5 @@
 /**
- * The dataStore below will be used in the autotest, which you can run with:
- *     $ bash autotest.sh
+ * The dataStore below will be used in our given console.log tests at the bottom of the file.
  * You can modify this if you want to do your own testing.
  *
  * We will be using a modified dataStore in the automarking - see the
