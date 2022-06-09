@@ -55,7 +55,7 @@ const [course2041, course2511, course6080] = allCourses;
 // https://stackoverflow.com/questions/67233342/jest-how-to-loop-through-similar-test-functions
 const genericTestdataStores = [
   {
-    testName: 'Empty case',
+    testName: 'Empty cases',
     courses: [],
     academics: [],
     expectedNumAcademics: { numAcademics: 0 },
